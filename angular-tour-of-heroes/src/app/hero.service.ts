@@ -11,9 +11,11 @@ import { MessageService } from './message.service';
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'api/heroes'; // URL to web API.
+  // URL to web API. Magically mapped to in-memory-data.service's const variable "heroes" based on name.
+  // See https://github.com/angular/angular/issues/18869
+  private heroesUrl = 'api/heroes'; 
 
-    /** GET hero by id. Will 404 if id not found */
+  /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
